@@ -13,7 +13,6 @@ if not TELEGRAM_TOKEN or not HF_TOKEN:
     raise SystemExit("توکن‌ها تنظیم نشده‌اند. TELEGRAM_TOKEN و HF_TOKEN را ست کن.")
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(name)
 
 # === توابع کمکی ===
 def build_prompt(persona: str, user_message: str) -> str:
