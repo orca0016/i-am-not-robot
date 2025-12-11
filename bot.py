@@ -35,7 +35,7 @@ def build_prompt(persona: str, user_message: str) -> str:
 
 # === تماس با HF ===
 def call_hf_inference(prompt: str, max_tokens: int = 200, temperature: float = 0.7):
-    url = f"https://router.huggingface.co/models/{HF_MODEL}"
+    url = f"https://api-inference.huggingface.co/models/{HF_MODEL}"
     headers = {"Authorization": f"Bearer {HF_TOKEN}"}
     payload = {
         "inputs": prompt,
