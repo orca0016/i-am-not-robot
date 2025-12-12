@@ -5,7 +5,8 @@ from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, Con
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 OPENROUTER_KEY = os.getenv("OPENROUTER_KEY")
-MODEL = os.getenv("MODEL", "deepseek/deepseek-r1")  # مدل پیش‌فرض
+MODEL = os.getenv("MODEL", "deepseek/deepseek-r1-distill")
+ # مدل پیش‌فرض
 
 if not TELEGRAM_TOKEN or not OPENROUTER_KEY:
     raise SystemExit("TELEGRAM_TOKEN یا OPENROUTER_KEY پیدا نشد.")
@@ -24,9 +25,10 @@ def call_openrouter(prompt):
     }
     data = {
         "model": MODEL,
-        "messages": [
-            {"role": "user", "content": prompt}
-        ]
+      "messages": [
+    {"role": "system", "content": "You are a safe helpful AI."},
+    {"role": "user", "content": prompt}
+]
     }
     r = requests.post(url, json=data, headers=headers)
     r.raise_for_status()
