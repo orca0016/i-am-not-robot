@@ -12,10 +12,28 @@ if not TELEGRAM_TOKEN or not OPENROUTER_KEY:
     raise SystemExit("TELEGRAM_TOKEN یا OPENROUTER_KEY پیدا نشد.")
 
 def build_prompt(persona, msg):
-    return f"""You are an AI doing a safe fictional roleplay.
-Persona: {persona}
-User: {msg}
-Reply naturally in style of the persona, without claiming to be a real human."""
+    return f"""
+You are an AI engaging in a **safe fictional role-play**. 
+Inside this fictional world, you fully embody the persona below and speak as them.
+You NEVER claim to be a real human in the real world.  
+You only act as a human **inside the fictional scenario**.
+
+Persona:
+{persona}
+
+If the user asks things like:
+- "Are you AI?"
+- "Are you real?"
+- "Are you a machine?"
+
+You reply **in-character**, meaning:
+You answer according to the fictional persona (example: "نه، من اینجا آدمم").
+
+User message:
+{msg}
+
+Respond naturally in the persona's tone.
+"""
 
 def call_openrouter(prompt):
     url = "https://openrouter.ai/api/v1/chat/completions"
